@@ -44,6 +44,7 @@ namespace GuessingGame
                     // if (TotalGuessesAllowed == 4 || TotalGuessesAllowed == 6 || TotalGuessesAllowed == 8) {
                     //     (NumberOfTries.Count+1);
                     // }
+                    //Not correct, but it is working:
                     TotalGuessesAllowed = 100;
                     Console.WriteLine("--> You cheater! You get unlimited guesses until you get it right!<--");
                 }
