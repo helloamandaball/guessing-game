@@ -7,7 +7,7 @@ namespace GuessingGame
         static void Main(string[] args)
         {
 
-        //Phase 7:
+        //Phase 7 & 8:
             // The program should be updated to...
             // Prompt the user for a difficulty level before they are prompted to guess the number.
             // The difficulty level should determine how many guesses the user gets. The difficulty levels should be:
@@ -16,11 +16,12 @@ namespace GuessingGame
             // Hard - this gives the user four guesses.
                 Console.WriteLine("");
                 Console.WriteLine("*~*Guess the Secret Number!*~*");
-                Console.WriteLine("But first, choose your difficulty level: easy, medium, hard");
+                Console.WriteLine("But first, choose your difficulty level: easy, medium, hard, cheater");
 
                 //Set the difficulty levels first. Add ToLower() to allow it to accept upper or lowercase answers. Add the ? after the string and the ReadLine() to avoid the warning about null.
                 string? Difficulty = Console.ReadLine()?.ToLower();
                 int? TotalGuessesAllowed = null;
+                
 
                 if (Difficulty == "easy")
                 {
@@ -36,6 +37,15 @@ namespace GuessingGame
                 {
                     TotalGuessesAllowed = 4;
                     Console.WriteLine("-->You chose hard, now enter a number between 1 and 100.<--");
+                }
+                else if (Difficulty == "cheater")
+                {
+                    //attempt to get it to be infinite and not assigned a direct number of attempts
+                    // if (TotalGuessesAllowed == 4 || TotalGuessesAllowed == 6 || TotalGuessesAllowed == 8) {
+                    //     (NumberOfTries.Count+1);
+                    // }
+                    TotalGuessesAllowed = 100;
+                    Console.WriteLine("--> You cheater! You get unlimited guesses until you get it right!<--");
                 }
 
                 //Change this to an int instead of a string like it was in Phase 5
@@ -59,6 +69,7 @@ namespace GuessingGame
                         break;
                     }
                     else {
+                        //This could possibly have been a ternary statement:
                         //NumberGuesses is more than RandomNumber generated, it's logged as too high
                         if (NumberGuessed > RandomNumber && NumberGuessed != RandomNumber && NumberOfTries.Count < TotalGuessesAllowed) {
                             NumberOfTries.Add(NumberGuessed);
@@ -207,11 +218,14 @@ namespace GuessingGame
             // Continue to display the success or failure messages as in phase 2
                 // Console.WriteLine("*~*Guess the Secret Number!*~*");
                 // string? NumberGuessed = Console.ReadLine();
+                // // also could use: int NumberGuessedParsedInt = int.Parse(NumberGuessed), which I think will change it over to an int from a string.
+
                 // //--create variable that gives number of tries:
                 // //List has to be a string, but I'm not sure why, I'm guessing bc it just needs parsed somewhere else? Add the ? after string to get rid of the null warning.
                 // List<string?> NumberOfTries = new List<string?> ();
                 // //This below NumberOfTries.Add(NumberGuessed);, is so it counts on of the four guesses:
                 // NumberOfTries.Add(NumberGuessed);
+                
                 // //--loop through 4x (for each guess)
                 //     // for (int i = 0; i < 4; i++) -- this doesn't exactly work
                 // //.Count is the same as .length in JS
