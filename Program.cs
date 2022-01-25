@@ -154,41 +154,42 @@ namespace GuessingGame
             // Inform the user if their guess was too high or too low, when they guess incorrectly.
                 Console.WriteLine("");
                 Console.WriteLine("*~*Guess the Secret Number!*~*");
-                string? NumberGuessed = Console.ReadLine();
+                //Change this to an int instead of a string like it was in Phase 5
+                int NumberGuessed = Convert.ToInt32(Console.ReadLine());
  
-                List<string?> NumberOfTries = new List<string?> ();
+                List<int> NumberOfTries = new List<int> ();
                 NumberOfTries.Add(NumberGuessed);
 
                 int TotalGuessesAllowed = 4;
                 //See rolling-dice we did in Ch.6 Translate Part 1 for how to do the random
                 int RandomNumber = new Random().Next(0, 100);
-                //This just turns NumberGuessed from a string into an integer. I didn't know how to do it another way and this one seemed to work.
-                int NumberGuessedParseInt = Int32.Parse(NumberGuessed);
 
                 //--loop through 4x (for each guess)
                 //.Count is the same as .length in JS
                 while (NumberOfTries.Count < 4)
                 {
                     //--use and if statement:
-                    if (NumberGuessedParseInt == RandomNumber)
+                    if (NumberGuessed == RandomNumber)
                     {
                         Console.WriteLine("Yep! You've guessed it! :)");
                         //break; will break the while loop
                         break;
                     }
                     else {
-                        if (NumberGuessedParseInt != RandomNumber && NumberGuessedParseInt > RandomNumber && NumberOfTries.Count < 4) {
+                        //NumberGuesses is more than RandomNumber generated, it's logged as too high
+                        if (NumberGuessed > RandomNumber && NumberGuessed != RandomNumber && NumberOfTries.Count < 4) {
                             NumberOfTries.Add(NumberGuessed);
                             Console.WriteLine($"Too high! You have {TotalGuessesAllowed - NumberOfTries.Count + 1} guesses left. Give it another try!");
-                            NumberGuessed = Console.ReadLine();
+                            NumberGuessed = Convert.ToInt32(Console.ReadLine());
                         }
-                        if (NumberGuessedParseInt != RandomNumber && NumberGuessedParseInt < RandomNumber && NumberOfTries.Count < 4) {
+                        //NumberGuesses is less than RandomNumber generated, it's logged as too low
+                        if (NumberGuessed < RandomNumber && NumberGuessed != RandomNumber && NumberOfTries.Count < 4) {
                             NumberOfTries.Add(NumberGuessed);
                             Console.WriteLine($"Too low! You have {TotalGuessesAllowed - NumberOfTries.Count + 1} guesses left. Give it another try!");
-                            NumberGuessed = Console.ReadLine();
+                            NumberGuessed = Convert.ToInt32(Console.ReadLine());;
                         }
                     }
-                    if (NumberGuessedParseInt != RandomNumber && NumberOfTries.Count == 4) {
+                    if (NumberGuessed != RandomNumber && NumberOfTries.Count == 4) {
                         Console.WriteLine($"Actually, the number was {RandomNumber}. Better luck next time :(");
                         Console.WriteLine("");
                     }
